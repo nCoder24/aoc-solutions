@@ -1,13 +1,26 @@
 const fs = require("fs");
 
 
-const add = (a, b) => a + b;
+const area = (x, y) => x * y;
+const perimeter = (x, y) => 2 * (x + y);
 const volume = ([l, w, h]) => l * w * h;
-const parseDimensions = (input) =>
-  input.split("\n").map(rawDimension => rawDimension.split("x").map(x => +x));
 
-const calculateSurfaceAreas = ([l, w, h]) => [l * w, w * h, h * l];
-const calculateSurfacePerimeters = ([l, w, h]) => [2 * (l + w), 2 * (w + h), 2 * (h + l)];
+const parseDimensions = (input) =>
+  input.split("\n").map(rawDimension => 
+    rawDimension.split("x").map(x => +x)
+  );
+
+const calculateSurfaceAreas = ([l, w, h]) => [
+  area(l, w), 
+  area(w, h), 
+  area(h, l),
+];
+
+const calculateSurfacePerimeters = ([l, w, h]) => [
+  perimeter(l, w), 
+  perimeter(w, h), 
+  perimeter(h, l),
+];
 
 // Part - 1
 const requiredWrappingPaper = (boxDimension) => {
