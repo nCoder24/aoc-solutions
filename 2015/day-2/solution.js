@@ -1,9 +1,11 @@
 const fs = require("fs");
 
-
 const area = (x, y) => x * y;
 const perimeter = (x, y) => 2 * (x + y);
 const volume = ([l, w, h]) => l * w * h;
+const min = (collection) => Math.min(...collection)
+const totalSurfaceArea = (surfaceAreas) =>
+  surfaceAreas.reduce((total, area) => total + area * 2, 0);
 
 const parseDimensions = (input) =>
   input.split("\n").map(rawDimension => 
@@ -26,8 +28,9 @@ const calculateSurfacePerimeters = ([l, w, h]) => [
 const requiredWrappingPaper = (boxDimension) => {
   const surfaceAreas = calculateSurfaceAreas(boxDimension);
   
-  return surfaceAreas.reduce(
-    (total, area) => total + area * 2, 0) + Math.min(...surfaceAreas);
+  return (
+    totalSurfaceArea(surfaceAreas) + min(surfaceAreas)
+  );
 };
 
 const totalRequiredWrappingPaper = (boxDimensions) =>
@@ -41,7 +44,7 @@ const requiredRibbon = (boxDimension) => {
   const surfacePerimeters = calculateSurfacePerimeters(boxDimension);
 
   return (
-    Math.min(...surfacePerimeters) + volume(boxDimension)
+    min(surfacePerimeters) + volume(boxDimension)
   );
 }
 
