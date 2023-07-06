@@ -1,10 +1,11 @@
 const assert = require("assert");
-const {describe, it} = require("node:test");
-const {findSmallestKeyNumber} = require("./solution");
+const { describe, it } = require("node:test");
+const { findSmallestSuffixNumber } = require("./solution");
 
-describe("findSmallestKeyNumber", () => {
+describe("findSmallestSuffixNumber", () => {
   it("should be a number results a hash with at least 5 leading zeros", () => {
-    assert.strictEqual(findSmallestKeyNumber("abcdef"), 609043);
-    assert.strictEqual(findSmallestKeyNumber("pqrstuv"), 1048970);
+    assert.strictEqual(findSmallestSuffixNumber("abcdef"), 609043);
+    assert.strictEqual(findSmallestSuffixNumber("pqrstuv"), 1048970);
+    assert.strictEqual(findSmallestSuffixNumber("yzbqklnj"), 282749);
   });
 });

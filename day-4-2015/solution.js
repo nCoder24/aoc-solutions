@@ -1,12 +1,16 @@
 const md5 = require("md5");
-const isValidInput = (input) => md5(input).startsWith("00000");
+const isHashStartsWithFiveZeros = (message) => md5(message).startsWith("00000");
 
-const findSmallestKeyNumber = (key) => {
-  let number = 0;
+const findSmallestSuffixNumber = (messagePrefix) => {
+  let messageSuffix = 0;
+
   while(true) {
-    if(isValidInput(key + number)) return number;
-    number++;
+    messageSuffix++;
+
+    if(isHashStartsWithFiveZeros(messagePrefix + messageSuffix)) {
+      return messageSuffix;
+    }
   }
 };
 
-module.exports = { findSmallestKeyNumber };
+module.exports = { findSmallestSuffixNumber };
