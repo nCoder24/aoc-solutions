@@ -3,9 +3,11 @@ const { describe, it } = require("node:test");
 const { findSmallestSuffixNumber } = require("./solution");
 
 describe("findSmallestSuffixNumber", () => {
-  it("should be a number results a hash with at least 5 leading zeros", () => {
-    assert.strictEqual(findSmallestSuffixNumber("abcdef"), 609043);
-    assert.strictEqual(findSmallestSuffixNumber("pqrstuv"), 1048970);
-    assert.strictEqual(findSmallestSuffixNumber("yzbqklnj"), 282749);
+  it("should be a number results a hash with with given prefix", () => {
+    const fiveZeros = "0".repeat(5);
+
+    assert.strictEqual(findSmallestSuffixNumber("abcdef", fiveZeros), 609043);
+    assert.strictEqual(findSmallestSuffixNumber("pqrstuv", fiveZeros), 1048970);
+    assert.strictEqual(findSmallestSuffixNumber("yzbqklnj", fiveZeros), 282749);
   });
 });
