@@ -47,12 +47,4 @@ const countVisitedHousesWithRobo = (instructions) => {
   return housesVisited.size;
 };
 
-const main = () => {
-  const instructions = require("fs").readFileSync("input", "utf-8");
-  // console.log(countVisitedHouses(instructions));
-  console.log(countVisitedHousesWithRobo(instructions));
-};
-
-main();
-
 module.exports = { countVisitedHouses, countVisitedHousesWithRobo };

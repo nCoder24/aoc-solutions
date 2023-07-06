@@ -1,5 +1,5 @@
 const { describe, it } = require("node:test");
-const { countVisitedHouses, countVisitedHousesWithRobo } = require("./solution");
+const { countVisitedHouses, countVisitedHousesWithRobo } = require("../src/day-3-solution");
 const assert = require("assert");
 
 describe("countVisitedHouses", () => {
