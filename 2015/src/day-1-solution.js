@@ -25,9 +25,4 @@ const findStepToBasement = (instructions) => {
 }
 //Time Stamp: 17.01m
 
-const main = () => {
-  const instructions = fs.readFileSync("input", "utf-8").trim();
-  console.log(findStepToBasement(instructions));
-};
-
-main();
+module.exports = {findFinalFloor, findStepToBasement};

@@ -54,10 +54,4 @@ const totalRequiredRibbon = (boxDimensions) =>
   );
 // Time Stamp: 1hr
 
-const main = () => {
-  const dimensions = parseDimensions(fs.readFileSync("input", "utf-8"));
-  console.log(dimensions);
-  console.log(totalRequiredRibbon(dimensions));
-};
-
-main();
+module.exports = {totalRequiredRibbon, totalRequiredWrappingPaper};
