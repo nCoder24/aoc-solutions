@@ -1,13 +1,13 @@
-const vowel = /[aeiou]/g;
-const duplicateLetter = /(.)\1/;
+const VOWEL = /[aeiou]/g;
+const CONSECUTIVE_IDENTICAL_LETTER = /([a-z])\1/;
 
 const containsThreeVowels = (string) => {
-  const vowelsInString = string.match(vowel) || [];
-  return vowelsInString.length >= 3;
+  const vowelsPresentInString = string.match(VOWEL) || [];
+  return vowelsPresentInString.length >= 3;
 };
 
-const containsDuplicateLetter = (string) =>  {
-  return duplicateLetter.test(string);
+const containsConsecutiveIdenticalLetter = (string) =>  {
+  return CONSECUTIVE_IDENTICAL_LETTER.test(string);
 }
 
 const doesNotContainSpecialCombination = (string) => {
@@ -16,7 +16,7 @@ const doesNotContainSpecialCombination = (string) => {
 
 const isNiceString = (string) =>
   containsThreeVowels(string) &&
-  containsDuplicateLetter(string) &&
+  containsConsecutiveIdenticalLetter(string) &&
   doesNotContainSpecialCombination(string);
 
 const countNiceStrings = (candidateStrings) => {
@@ -27,6 +27,6 @@ module.exports = {
   countNiceStrings,
   isNiceString,
   containsThreeVowels,
-  containsDuplicateLetter,
+  containsDuplicateLetter: containsConsecutiveIdenticalLetter,
   doesNotContainSpecialCombination,
 };

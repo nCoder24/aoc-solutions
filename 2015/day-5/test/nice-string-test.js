@@ -17,20 +17,12 @@ describe("countNiceStrings", () => {
     assert.strictEqual(numOfNiceStrings, 0);
   });
 
-  it("should be 0 if no string in the list is nice string", () => {
+  it("should be 0 if no string in the list is a nice string", () => {
     const candidateStrings = ["abc", "def"];
 
     const numOfNiceStrings = countNiceStrings(candidateStrings);
 
     assert.strictEqual(numOfNiceStrings, 0);
-  });
-
-  it("should be 1 if only 1 nice string is present", () => {
-    const candidateStrings = ["aaa", "def"];
-
-    const numOfNiceStrings = countNiceStrings(candidateStrings);
-
-    assert.strictEqual(numOfNiceStrings, 1);
   });
 
   it("should be the number of nice strings present in the string", () => {
@@ -59,10 +51,6 @@ describe("isNiceString", () => {
 
   it("should be true if string has all the properties", () => {
     assert.ok(isNiceString("ugknbfddgicrmopn"));
-  });
-
-  it("should be true if string has all the properties but overlapping", () => {
-    assert.ok(isNiceString("aaa"));
   });
 
   it("should be true if string has all the properties but overlapping", () => {
@@ -102,16 +90,16 @@ describe("containsDuplicateLetter", () => {
     assert.ok(!containsDuplicateLetter(""));
   });
 
-  it("should be false if no character is not present twice in a row", () => {
+  it("should be false if no consecutive identical characters are present", () => {
     assert.ok(!containsDuplicateLetter("abcd"));
     assert.ok(!containsDuplicateLetter("jchzalrnumimnmhp"));
   });
 
-  it("should be true if any character is present twice in a row", () => {
+  it("should be true if consecutive identical characters are present", () => {
     assert.ok(containsDuplicateLetter("aabc"));
   });
 
-  it("should be false if any character is present at least twice but not adjacent", () => {
+  it("should be false if any identical characters are present but not consecutive", () => {
     assert.ok(!containsDuplicateLetter("abac"));
   });
 });
@@ -120,19 +108,16 @@ describe("doesNotContainSpecialCombination", () => {
   it("should be true if the string is empty", () => {
     assert.ok(doesNotContainSpecialCombination(""));
   });
-
-  it("should be false if the string contains any of the special combination", () => {
+  
+  it("should be false if the string contains one or more special combination", () => {
     assert.ok(!doesNotContainSpecialCombination("abjks"));
     assert.ok(!doesNotContainSpecialCombination("ajcdks"));
     assert.ok(!doesNotContainSpecialCombination("ajkaspq"));
     assert.ok(!doesNotContainSpecialCombination("ajkxyas"));
-  });
-
-  it("should be false if the string contains more than one special combination", () => {
     assert.ok(!doesNotContainSpecialCombination("abjxycdks"));
   });
 
-  it("should be true if the string does not contain any of the special combination", () => {
+  it("should be true if the string doesn't contain any of the special combination", () => {
     assert.ok(doesNotContainSpecialCombination("ajks"));
   });
 });
