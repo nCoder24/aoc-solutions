@@ -1,9 +1,9 @@
 const { describe, it } = require("node:test");
-const { countVisitedHouses, countVisitedHousesWithRobo } = require("../src/day-3-solution");
+const { countVisitedHouses, countVisitedHousesWithRobo } = require("../src/solution");
 const assert = require("assert");
 
 describe("countVisitedHouses", () => {
-  it("should visit 1 house(starting house) with 0 instructions", () => {
+  it("should visit 1 house(starting house) with no instructions", () => {
     const instructions = "";
     assert.strictEqual(countVisitedHouses(instructions), 1);
   });
@@ -25,7 +25,7 @@ describe("countVisitedHouses", () => {
 });
 
 describe("countVisitedHousesWithRobo", () => {
-  it("should visit 1 house(starting house) with 0 instructions", () => {
+  it("should visit 1 house(starting house) with no instructions", () => {
     const instructions = "";
     assert.strictEqual(countVisitedHousesWithRobo(instructions), 1);
   });

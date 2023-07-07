@@ -1,4 +1,4 @@
-const { findSmallestSuffixNumber } = require("./solution");
+const { findSmallestSuffixNumber } = require("./src/solution");
 
 const main = () => {
   const fiveZeros = "0".repeat(5);
