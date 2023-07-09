@@ -6,7 +6,7 @@ const containsThreeVowels = (string) => {
   return vowelsPresentInString.length >= 3;
 };
 
-const containsConsecutiveIdenticalLetter = (string) =>  {
+const containsConsecutiveIdenticalLetters = (string) =>  {
   return CONSECUTIVE_IDENTICAL_LETTER.test(string);
 }
 
@@ -16,7 +16,7 @@ const doesNotContainSpecialCombination = (string) => {
 
 const isNiceString = (string) =>
   containsThreeVowels(string) &&
-  containsConsecutiveIdenticalLetter(string) &&
+  containsConsecutiveIdenticalLetters(string) &&
   doesNotContainSpecialCombination(string);
 
 const countNiceStrings = (candidateStrings) => {
@@ -27,6 +27,6 @@ module.exports = {
   countNiceStrings,
   isNiceString,
   containsThreeVowels,
-  containsDuplicateLetter: containsConsecutiveIdenticalLetter,
+  containsConsecutiveIdenticalLetters,
   doesNotContainSpecialCombination,
 };

@@ -4,7 +4,7 @@ const {
   countNiceStrings,
   isNiceString,
   containsThreeVowels,
-  containsDuplicateLetter,
+  containsConsecutiveIdenticalLetters,
   doesNotContainSpecialCombination,
 } = require("../src/nice-string.js");
 
@@ -87,20 +87,20 @@ describe("containsThreeVowels", () => {
 
 describe("containsDuplicateLetter", () => {
   it("should be false if string is empty", () => {
-    assert.ok(!containsDuplicateLetter(""));
+    assert.ok(!containsConsecutiveIdenticalLetters(""));
   });
 
   it("should be false if no consecutive identical characters are present", () => {
-    assert.ok(!containsDuplicateLetter("abcd"));
-    assert.ok(!containsDuplicateLetter("jchzalrnumimnmhp"));
+    assert.ok(!containsConsecutiveIdenticalLetters("abcd"));
+    assert.ok(!containsConsecutiveIdenticalLetters("jchzalrnumimnmhp"));
   });
 
   it("should be true if consecutive identical characters are present", () => {
-    assert.ok(containsDuplicateLetter("aabc"));
+    assert.ok(containsConsecutiveIdenticalLetters("aabc"));
   });
 
   it("should be false if any identical characters are present but not consecutive", () => {
-    assert.ok(!containsDuplicateLetter("abac"));
+    assert.ok(!containsConsecutiveIdenticalLetters("abac"));
   });
 });
 
