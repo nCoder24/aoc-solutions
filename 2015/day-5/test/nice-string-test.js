@@ -10,27 +10,15 @@ const {
 
 describe("countNiceStrings", () => {
   it("should be 0 if the list is empty", () => {
-    const candidateStrings = [];
-
-    const numOfNiceStrings = countNiceStrings(candidateStrings);
-
-    assert.strictEqual(numOfNiceStrings, 0);
+    assert.strictEqual(countNiceStrings([]), 0);
   });
 
   it("should be 0 if no string in the list is a nice string", () => {
-    const candidateStrings = ["abc", "def"];
-
-    const numOfNiceStrings = countNiceStrings(candidateStrings);
-
-    assert.strictEqual(numOfNiceStrings, 0);
+    assert.strictEqual(countNiceStrings(["abc", "def"]), 0);
   });
 
   it("should be the number of nice strings present in the string", () => {
-    const candidateStrings = ["aaa", "def", "ugknbfddgicrmopn"];
-
-    const numOfNiceStrings = countNiceStrings(candidateStrings);
-
-    assert.strictEqual(numOfNiceStrings, 2);
+    assert.strictEqual(countNiceStrings(["aaa", "def", "ugknbfddgicrmopn"]), 2);
   });
 });
 
