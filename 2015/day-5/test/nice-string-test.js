@@ -3,10 +3,13 @@ const { describe, it } = require("node:test");
 const {
   countNiceStrings,
   isNiceString,
+} = require("../src/nice-string.js");
+
+const {
   containsThreeVowels,
   containsConsecutiveIdenticalLetters,
   doesNotContainSpecialCombination,
-} = require("../src/nice-string.js");
+} = require("../src/nice-string-rules.js");
 
 describe("countNiceStrings", () => {
   it("should be 0 if the list is empty", () => {
