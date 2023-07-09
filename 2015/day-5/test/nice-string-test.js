@@ -3,6 +3,7 @@ const { describe, it } = require("node:test");
 const {
   countNiceStrings,
   isNiceString,
+  isProperNiceString,
 } = require("../src/nice-string.js");
 
 const {
@@ -30,11 +31,11 @@ describe("isNiceString", () => {
     assert.ok(!isNiceString(""));
   });
 
-  it("should be false if string don't have any of the properties required", () => {
+  it("should be false if string don't have any of the three properties required", () => {
     assert.ok(!isNiceString("xyz"));
   });
 
-  it("should be false if string don't have all of the properties required", () => {
+  it("should be false if string don't have all of the three properties required", () => {
     assert.ok(!isNiceString("haegwjzuvuyypxyu"));
     assert.ok(!isNiceString("jchzalrnumimnmhp"));
     assert.ok(!isNiceString("dvszwmarrgswjxmb"));
@@ -46,6 +47,23 @@ describe("isNiceString", () => {
 
   it("should be true if string has all the properties but overlapping", () => {
     assert.ok(isNiceString("aaa"));
+  });
+});
+
+describe("isProperNiceString", () => {
+  it("should be false for empty string", () => {
+    assert.ok(!isProperNiceString(""));
+  });
+
+  it("should be false if string don't have both or any of the required properties", () => {
+    assert.ok(!isProperNiceString("abc"));
+    assert.ok(!isProperNiceString("uurcxstgmygtbstg"));
+    assert.ok(!isProperNiceString("ieodomkazucvgmuy"));
+  });
+
+  it("should be true if string have both of the required properties", () => {
+    assert.ok(!isProperNiceString("qjhvhtzxzqqjkmpb"));
+    assert.ok(!isProperNiceString("xxyxx"));
   });
 });
 

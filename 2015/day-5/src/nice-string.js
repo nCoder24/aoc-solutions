@@ -6,10 +6,15 @@ const {
 
 // TODO: rename string/strings
 
-const isNiceString = (string) =>
-  containsThreeVowels(string) &&
+const isNiceString = (string) => {
+  return containsThreeVowels(string) &&
   containsConsecutiveIdenticalLetters(string) &&
   doesNotContainSpecialCombination(string);
+}
+
+const isProperNiceString = (string) => {
+  return false;
+}
 
 const countNiceStrings = (strings, niceStringPredicate) => {
   return strings.filter(niceStringPredicate).length;
@@ -18,4 +23,5 @@ const countNiceStrings = (strings, niceStringPredicate) => {
 module.exports = {
   countNiceStrings,
   isNiceString,
+  isProperNiceString
 };
