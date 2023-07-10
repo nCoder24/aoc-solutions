@@ -19,12 +19,12 @@ const isProperNiceString = (string) => {
   containsIdenticalLettersSurroundingOneLetter(string);
 }
 
-const countNiceStrings = (strings, niceStringPredicate) => {
-  return strings.filter(niceStringPredicate).length;
-};
+const countNiceStrings = (strings) => strings.filter(isNiceString).length;
+const countProperNiceStrings = (strings) => strings.filter(isProperNiceString).length;
 
 module.exports = {
   countNiceStrings,
   isNiceString,
-  isProperNiceString
+  isProperNiceString,
+  countProperNiceStrings,
 };

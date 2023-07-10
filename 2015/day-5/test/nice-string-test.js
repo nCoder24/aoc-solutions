@@ -4,6 +4,7 @@ const {
   countNiceStrings,
   isNiceString,
   isProperNiceString,
+  countProperNiceStrings,
 } = require("../src/nice-string.js");
 
 const {
@@ -16,15 +17,43 @@ const {
 
 describe("countNiceStrings", () => {
   it("should be 0 if the list is empty", () => {
-    assert.strictEqual(countNiceStrings([], isNiceString), 0);
+    assert.strictEqual(countNiceStrings([]), 0);
   });
 
   it("should be 0 if no string in the list is a nice string", () => {
-    assert.strictEqual(countNiceStrings(["abc", "def"], isNiceString), 0);
+    assert.strictEqual(countNiceStrings(["abc", "def"]), 0);
   });
 
   it("should be the number of nice strings present in the string", () => {
-    assert.strictEqual(countNiceStrings(["aaa", "def", "ugknbfddgicrmopn"], isNiceString), 2);
+    assert.strictEqual(countNiceStrings(["aaa", "def", "ugknbfddgicrmopn"]), 2);
+  });
+});
+
+describe("countNiceStrings", () => {
+  it("should be 0 if the list is empty", () => {
+    assert.strictEqual(countNiceStrings([]), 0);
+  });
+
+  it("should be 0 if no string in the list is a nice string", () => {
+    assert.strictEqual(countNiceStrings(["abc", "def"]), 0);
+  });
+
+  it("should be the number of nice strings present in the string", () => {
+    assert.strictEqual(countNiceStrings(["aaa", "def", "ugknbfddgicrmopn"]), 2);
+  });
+});
+
+describe("countProperNiceStrings", () => {
+  it("should be 0 if the list is empty", () => {
+    assert.strictEqual(countProperNiceStrings([]), 0);
+  });
+
+  it("should be 0 if no string in the list is a nice string", () => {
+    assert.strictEqual(countProperNiceStrings(["aba", "def"]), 0);
+  });
+
+  it("should be the number of nice strings present in the string", () => {
+    assert.strictEqual(countProperNiceStrings(["aaa", "qjhvhtzxzqqjkmpb", "xxyxx"]), 2);
   });
 });
 

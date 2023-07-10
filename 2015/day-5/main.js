@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { countNiceStrings, isNiceString, isProperNiceString } = require("./src/nice-string")
+const { countNiceStrings, isNiceString, isProperNiceString, countProperNiceStrings } = require("./src/nice-string")
 
 const readStringsOfSanta = () => {
   return fs.readFileSync("./resources/input.txt", "utf-8").split("\n");  
@@ -7,8 +7,8 @@ const readStringsOfSanta = () => {
 
 const main = () => {
   const stringOfSanta = readStringsOfSanta();
-  console.log("Part1:", countNiceStrings(stringOfSanta, isNiceString));
-  console.log("Part2:", countNiceStrings(stringOfSanta, isProperNiceString));
+  console.log("Part1:", countNiceStrings(stringOfSanta));
+  console.log("Part2:", countProperNiceStrings(stringOfSanta));
 }
 
 main();
