@@ -8,6 +8,7 @@ const readStringsOfSanta = () => {
 const main = () => {
   const stringOfSanta = readStringsOfSanta();
   console.log("Part1:", countNiceStrings(stringOfSanta, isNiceString));
+  console.log("Part2:", countNiceStrings(stringOfSanta, isProperNiceString));
 }
 
 main();
