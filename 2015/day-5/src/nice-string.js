@@ -2,6 +2,8 @@ const {
   containsThreeVowels,
   containsConsecutiveIdenticalLetters,
   doesNotContainSpecialCombination,
+  containsRepeatingPairs,
+  containsIdenticalLettersSurroundingOneLetter,
 } = require("./nice-string-rules.js");
 
 // TODO: rename string/strings
@@ -13,7 +15,8 @@ const isNiceString = (string) => {
 }
 
 const isProperNiceString = (string) => {
-  return false;
+  return containsRepeatingPairs(string) &&
+  containsIdenticalLettersSurroundingOneLetter(string);
 }
 
 const countNiceStrings = (strings, niceStringPredicate) => {

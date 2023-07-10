@@ -10,6 +10,8 @@ const {
   containsThreeVowels,
   containsConsecutiveIdenticalLetters,
   doesNotContainSpecialCombination,
+  containsRepeatingPairs,
+  containsIdenticalLettersSurroundingOneLetter,
 } = require("../src/nice-string-rules.js");
 
 describe("countNiceStrings", () => {
@@ -62,8 +64,8 @@ describe("isProperNiceString", () => {
   });
 
   it("should be true if string have both of the required properties", () => {
-    assert.ok(!isProperNiceString("qjhvhtzxzqqjkmpb"));
-    assert.ok(!isProperNiceString("xxyxx"));
+    assert.ok(isProperNiceString("qjhvhtzxzqqjkmpb"));
+    assert.ok(isProperNiceString("xxyxx"));
   });
 });
 
@@ -128,5 +130,49 @@ describe("doesNotContainSpecialCombination", () => {
 
   it("should be true if the string doesn't contain any of the special combination", () => {
     assert.ok(doesNotContainSpecialCombination("ajks"));
+  });
+});
+
+describe("containsRepeatingPairs", () => {
+  it("should be false for empty string", () => {
+    assert.ok(!containsRepeatingPairs(""));
+  });
+
+  it("should be false if string does not contain repeating pair", () => {
+    assert.ok(!containsRepeatingPairs("abaa"));
+    assert.ok(!containsRepeatingPairs("ieodomkazucvgmuy"));
+  });
+
+  it("should be true if string contains one a repeating immediately", () => {
+    assert.ok(containsRepeatingPairs("abab"));
+  });
+  
+  it("should be true if string contains a pair repeating after one or more letter(s)", () => {
+    assert.ok(containsRepeatingPairs("abaab"));
+    assert.ok(containsRepeatingPairs("abdskajlfab"));
+  });
+});
+
+describe("containsIdenticalLettersSurroundingOneLetter", () => {
+  it("should be false for empty string", () => {
+    assert.ok(!containsIdenticalLettersSurroundingOneLetter(""));
+  });
+
+  it("should be false if the string has no repeating letter", () => {
+    assert.ok(!containsIdenticalLettersSurroundingOneLetter("abc"));
+  });
+
+  it("should be false if the string has repeating letter but with no letter between", () => {
+    assert.ok(!containsIdenticalLettersSurroundingOneLetter("aa"));
+  });
+
+  it("should be false if the string has repeating letter but with more than one letter between", () => {
+    assert.ok(!containsIdenticalLettersSurroundingOneLetter("abba"));
+  });
+
+  it("should be true if the string has repeating letter with exactly one letter between", () => {
+    assert.ok(containsIdenticalLettersSurroundingOneLetter("aba"));
+    assert.ok(containsIdenticalLettersSurroundingOneLetter("xxyxx"));
+    assert.ok(containsIdenticalLettersSurroundingOneLetter("qjhvhtzxzqqjkmpb"));
   });
 });
