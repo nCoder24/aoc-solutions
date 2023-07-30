@@ -36,6 +36,7 @@ class BrightnessControlLightGrid {
   decreaseBrightness(start, end) {
     this.#getLights(start, end).forEach(({ x, y }) => {
       this.#grid[x][y]--;
+      if (this.#grid[x][y] < 0) this.#grid[x][y] = 0;
     });
   }
 
