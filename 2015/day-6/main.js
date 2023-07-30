@@ -13,7 +13,7 @@ const solvePartOne = (instructions) => {
 }
 
 const main = () => {
-  const instructions = readInstructions();
+  const instructions = [];
   console.log(solvePartOne(instructions));
 }
 
