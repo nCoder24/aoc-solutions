@@ -1,8 +1,8 @@
 package main
 
 import (
-	"aoc2023/resources"
-	"aoc2023/solution"
+	"aoc2023/day-1/resources"
+	"aoc2023/day-1/solution"
 	"fmt"
 	"strings"
 )
