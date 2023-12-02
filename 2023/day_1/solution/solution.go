@@ -6,11 +6,11 @@ import (
 	"unicode"
 )
 
-func findFirstDigit(line string) uint8 {
+func findFirstDigit(line string) uint {
 	for i := 0; i < len(line); i++ {
 		if unicode.IsDigit(rune(line[i])) {
 			digit, _ := strconv.Atoi(string(line[i]))
-			return uint8(digit)
+			return uint(digit)
 		}
 
 		if digit, ok := getSpelledDigit(line, i); ok {
@@ -21,11 +21,11 @@ func findFirstDigit(line string) uint8 {
 	return 0
 }
 
-func findLastDigit(line string) uint8 {
+func findLastDigit(line string) uint {
 	for i := len(line) - 1; i >= 0; i-- {
 		if unicode.IsDigit(rune(line[i])) {
 			digit, _ := strconv.Atoi(string(line[i]))
-			return uint8(digit)
+			return uint(digit)
 		}
 
 		if digit, ok := getSpelledDigit(line, i); ok {
@@ -36,7 +36,7 @@ func findLastDigit(line string) uint8 {
 	return 0
 }
 
-func getSpelledDigit(line string, last int) (uint8, bool) {
+func getSpelledDigit(line string, last int) (uint, bool) {
 	slices := make([]string, 0, 3)
 
 	for i := 2; i <= 4; i++ {
