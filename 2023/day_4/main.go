@@ -21,5 +21,8 @@ func main() {
 		log.Fatal(input)
 	}
 
-	fmt.Println(solution.CalculatePoints(solution.ParseCards(string(input))))
+	cards := solution.ParseCards(string(input))
+
+	fmt.Println("Part 1:", solution.CalculatePoints(cards))
+	fmt.Println("Part 2:", solution.CalculateTotalCards(cards))
 }

@@ -1,6 +1,7 @@
 package solution
 
 import (
+	"math"
 	"regexp"
 	"strconv"
 	"strings"
@@ -15,8 +16,6 @@ type Card struct {
 	win       IntSet
 	qty       int
 }
-
-type Cards map[int]Card
 
 type IntSet struct {
 	lookup map[int]bool
@@ -61,39 +60,43 @@ func parseCard(line string) Card {
 	return Card{
 		available: toIntSet(spaceSep.Split(cardInfo[1], -1)),
 		win:       toIntSet(spaceSep.Split(cardInfo[0], -1)),
+		qty:       1,
 	}
 }
 
-func ParseCards(raw string) Cards {
-	cards := Cards{}
+func ParseCards(raw string) []Card {
+	cards := make([]Card, 0)
 
-	for i, line := range strings.Split(raw, "\n") {
-		cards[i+1] = parseCard(line)
+	for _, line := range strings.Split(raw, "\n") {
+		cards = append(cards, parseCard(line))
 	}
 
 	return cards
 }
 
-func (card Card) point() int {
-	point := 0
+func (card Card) matches() int {
+	matches := 0
 
 	for _, number := range card.win.all() {
-		if !card.available.has(number) {
-			continue
+		if card.available.has(number) {
+			matches++
 		}
-
-		if point == 0 {
-			point = 1
-			continue
-		}
-
-		point *= 2
 	}
 
-	return point
+	return matches
 }
 
-func CalculatePoints(cards Cards) int {
+func (card Card) point() int {
+	matches := card.matches()
+
+	if matches == 0 {
+		return 0
+	}
+
+	return int(math.Pow(2, float64(matches-1)))
+}
+
+func CalculatePoints(cards []Card) int {
 	point := 0
 
 	for _, card := range cards {
@@ -101,4 +104,27 @@ func CalculatePoints(cards Cards) int {
 	}
 
 	return point
+}
+
+func process(cards []Card) {
+	for i, card := range cards {
+		for id := i + 1; id <= i+card.matches(); id++ {
+			if id >= len(cards) {
+				return
+			}
+
+			cards[id].qty += card.qty
+		}
+	}
+}
+
+func CalculateTotalCards(cards []Card) int {
+	total := 0
+	process(cards)
+
+	for _, card := range cards {
+		total += card.qty
+	}
+
+	return total
 }
