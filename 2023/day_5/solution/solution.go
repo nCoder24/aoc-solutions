@@ -18,6 +18,21 @@ func (c Conversion) String() string {
 	return fmt.Sprintf("{src:%d, dest:%d, span:%d}", c.src, c.dest, c.span)
 }
 
+func FindClosestLocationWithRangeOfSeeds(maps []Map, seedRanges [][]uint) uint {
+	locationToSeedMap := reverse(maps)
+	for i := uint(0); true; i++ {
+		seed := calculateSeedNumber(locationToSeedMap, i)
+
+		for _, seedRange := range seedRanges {
+			if seed >= seedRange[0] && seed < seedRange[0]+seedRange[1] {
+				return i
+			}
+		}
+	}
+
+	return 0
+}
+
 func FindClosestLocation(maps []Map, seeds []uint) uint {
 	closest := uint(math.Inf(1))
 
@@ -35,6 +50,26 @@ func CalculateLocations(maps []Map, seeds []uint) []uint {
 	}
 
 	return locations
+}
+
+func calculateSeedNumber(maps []Map, location uint) uint {
+	curr := location
+
+	for _, m := range maps {
+		curr = reverseConvert(curr, m)
+	}
+
+	return curr
+}
+
+func reverse(maps []Map) []Map {
+	reversed := make([]Map, len(maps))
+
+	for i, m := range maps {
+		reversed[len(maps)-i-1] = m
+	}
+
+	return reversed
 }
 
 func calculateLocation(maps []Map, seed uint) uint {
@@ -57,9 +92,40 @@ func convert(val uint, m Map) uint {
 	return val
 }
 
-func ParseSeedsAndMaps(raw string) ([]uint, []Map) {
+func reverseConvert(val uint, m Map) uint {
+	for _, conv := range m {
+		if val >= conv.dest && val < conv.dest+conv.span {
+			return conv.src + (val - conv.dest)
+		}
+	}
+
+	return val
+}
+
+func ParseMapsAndSeedRanges(raw string) ([]Map, [][]uint) {
 	sections := strings.Split(raw, "\n\n")
-	return parseSeeds(sections[0]), parseMaps(sections[1:])
+	return parseMaps(sections[1:]), parseSeedRanges(sections[0])
+}
+
+func parseSeedRanges(raw string) [][]uint {
+	ranges := make([][]uint, 0)
+	chunk := make([]uint, 0)
+
+	for _, num := range strings.Split(raw, " ")[1:] {
+		chunk = append(chunk, toUint(num))
+
+		if len(chunk) == 2 {
+			ranges = append(ranges, chunk)
+			chunk = make([]uint, 0)
+		}
+	}
+
+	return ranges
+}
+
+func ParseMapsAndSeeds(raw string) ([]Map, []uint) {
+	sections := strings.Split(raw, "\n\n")
+	return parseMaps(sections[1:]), parseSeeds(sections[0])
 }
 
 func parseSeeds(raw string) []uint {

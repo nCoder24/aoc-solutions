@@ -14,6 +14,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	seeds, maps := solution.ParseSeedsAndMaps(string(input))
-	fmt.Println(solution.FindClosestLocation(maps, seeds))
+	fmt.Println("Part-1:", solution.FindClosestLocation(solution.ParseMapsAndSeeds(string(input))))
+	fmt.Println("Part-2:", solution.FindClosestLocationWithRangeOfSeeds(solution.ParseMapsAndSeedRanges(string(input))))
 }
