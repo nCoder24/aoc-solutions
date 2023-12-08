@@ -8,26 +8,26 @@ import (
 	"strings"
 )
 
-var CardRank = map[Card]int{
+var CardStrengths = map[Card]int{
 	"A": 12,
 	"K": 11,
 	"Q": 10,
-	"J": 9,
-	"T": 8,
-	"9": 7,
-	"8": 6,
-	"7": 5,
-	"6": 4,
-	"5": 3,
-	"4": 2,
-	"3": 1,
-	"2": 0,
+	"T": 9,
+	"9": 8,
+	"8": 7,
+	"7": 6,
+	"6": 5,
+	"5": 4,
+	"4": 3,
+	"3": 2,
+	"2": 1,
+	"J": 0,
 }
 
 type Card string
 
 func (c Card) strength() int {
-	return CardRank[c]
+	return CardStrengths[c]
 }
 
 func (c Card) compare(o Card) int {
@@ -41,8 +41,14 @@ type Hand struct {
 
 func (h Hand) strength() int {
 	fq := map[string]int{}
+	jokers := 0
 
 	for _, card := range h.Cards {
+		if card == "J" {
+			jokers++
+			continue
+		}
+
 		fq[string(card)] += 1
 	}
 
@@ -56,6 +62,11 @@ func (h Hand) strength() int {
 		return b - a
 	})
 
+	if len(occurrences) == 0 {
+		occurrences = append(occurrences, 0)
+	}
+
+	occurrences[0] += jokers
 	return 20 - multiplyRankAndAdd(occurrences)
 }
 
